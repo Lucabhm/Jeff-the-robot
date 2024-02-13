@@ -1,4 +1,4 @@
-from RPi.GPIO import GPIO
+import RPi.GPIO as GPIO
 
 def	forward(pin1, pin2, pin3, pin4, pin5, pin6, pin7, pin8):
 	GPIO.output(pin1, GPIO.HIGH)
