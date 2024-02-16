@@ -24,7 +24,7 @@ for pin in PINS:
 
 print('Start the manual mode Y/N')
 manual = input()
-if manual == 'y' or 'Y':
+if manual == 'y' or manual == 'Y':
 	manual_control.start(OUT1_3_1, OUT1_3_2, OUT2_4_1, OUT2_4_2)
 else:
 	print('Forward')

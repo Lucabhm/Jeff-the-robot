@@ -24,5 +24,6 @@ def	on_release(key, pin1, pin2, pin3, pin4):
 		sys.exit(0)
 
 def	start(pin1, pin2, pin3, pin4):
-	with Listener(on_press=on_press, on_release=on_release) as listener:
-		listener.join()
+	with Listener(on_press=lambda key: on_press(key, pin1, pin2, pin3, pin4),
+		on_release=lambda key: on_release(key, pin1, pin2, pin3, pin4)) as listener:
+			listener.join()
