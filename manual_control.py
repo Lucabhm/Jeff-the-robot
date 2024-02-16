@@ -1,29 +1,29 @@
-from pynput.keyboard import *
+from sshkeyboard import *
 import sys
 import directions
 
 def	on_press(key, pin1, pin2, pin3, pin4):
-	if key == Key.up:
+	if key == "up":
 		print('up')
 		directions.forward(pin1, pin2, pin3, pin4)
-	elif key == Key.down:
+	elif key == "down":
 		print('down')
 		directions.backward(pin1, pin2, pin3, pin4)
-	elif key == Key.right:
+	elif key == "right":
 		print('right')
 		directions.right(pin1, pin2, pin3, pin4)
-	elif key == Key.left:
+	elif key == "left":
 		print('left')
 		directions.left(pin1, pin2, pin3, pin4)
 
 def	on_release(key, pin1, pin2, pin3, pin4):
-	if key in [Key.up, Key.down, Key.right, Key.left]:
-		directions.stop(pin1, pin2, pin3, pin4)
-	elif key == Key.esc:
+	pins = [pin1, pin2, pin3, pin4]
+	if key in ["up", "down", "right", "left"]:
+		directions.stop(pins)
+	elif key == "esc":
 		print('Exit')
 		sys.exit(0)
 
 def	start(pin1, pin2, pin3, pin4):
-	with Listener(on_press=lambda key: on_press(key, pin1, pin2, pin3, pin4),
-		on_release=lambda key: on_release(key, pin1, pin2, pin3, pin4)) as listener:
-			listener.join()
+	listen_keyboard(on_press=lambda key: on_press(key, pin1, pin2, pin3, pin4),
+		on_release=lambda key: on_release(key, pin1, pin2, pin3, pin4))
