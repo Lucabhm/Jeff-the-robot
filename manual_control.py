@@ -4,16 +4,12 @@ import directions
 
 def	on_press(key, pin1, pin2, pin3, pin4):
 	if key == "up":
-		print('up')
 		directions.forward(pin1, pin2, pin3, pin4)
 	elif key == "down":
-		print('down')
 		directions.backward(pin1, pin2, pin3, pin4)
 	elif key == "right":
-		print('right')
 		directions.right(pin1, pin2, pin3, pin4)
 	elif key == "left":
-		print('left')
 		directions.left(pin1, pin2, pin3, pin4)
 
 def	on_release(key, pin1, pin2, pin3, pin4):
