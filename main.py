@@ -9,8 +9,8 @@ GPIO.setmode(GPIO.BCM)
 ## Motor 1 = front left,  Motor 3 = back left
 
 OUT1_3_0 = 17
-OUT1_3_1 = 27
-OUT1_3_2 = 22
+OUT1_3_1 = 6
+OUT1_3_2 = 5
 
 ## Motor 2 = front right, Motor 4 = back right
 
