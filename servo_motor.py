@@ -18,7 +18,7 @@ def angle_to_percent (angle) :
     return start + angle_as_percent
 
 
-GPIO.setmode(GPIO.BOARD) #Use Board numerotation mode
+GPIO.setmode(GPIO.BCM) #Use Board numerotation mode
 GPIO.setwarnings(False) #Disable warnings
 
 #Use pin 12 for PWM signal
@@ -30,7 +30,7 @@ pwm = GPIO.PWM(pwm_gpio, frequence)
 #Init at 0°
 pwm.start(angle_to_percent(0))
 time.sleep(1)
-
+print("here\n")
 #Go at 90°
 pwm.ChangeDutyCycle(angle_to_percent(90))
 time.sleep(1)
