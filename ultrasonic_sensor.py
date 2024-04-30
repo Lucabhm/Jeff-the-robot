@@ -1,18 +1,7 @@
 import RPi.GPIO as GPIO
 import time
  
-#GPIO Modus (BOARD / BCM)
-GPIO.setmode(GPIO.BCM)
- 
-#GPIO Pins zuweisen
-GPIO_TRIGGER = 18
-GPIO_ECHO = 16
- 
-#Richtung der GPIO-Pins festlegen (IN / OUT)
-GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-GPIO.setup(GPIO_ECHO, GPIO.IN)
- 
-def distanz():
+def distanz(GPIO_TRIGGER, GPIO_ECHO):
     # setze Trigger auf HIGH
     GPIO.output(GPIO_TRIGGER, True)
  
@@ -39,14 +28,14 @@ def distanz():
  
     return distanz
  
-if __name__ == '__main__':
-    try:
-        while True:
-            abstand = distanz()
-            print ("Gemessene Entfernung = %.1f cm" % abstand)
-            time.sleep(1)
+# if __name__ == '__main__':
+#     try:
+#         while True:
+#             abstand = distanz()
+#             print ("Gemessene Entfernung = %.1f cm" % abstand)
+#             time.sleep(1)
  
-        # Beim Abbruch durch STRG+C resetten
-    except KeyboardInterrupt:
-        print("Messung vom User gestoppt")
-        GPIO.cleanup()
+#         # Beim Abbruch durch STRG+C resetten
+#     except KeyboardInterrupt:
+#         print("Messung vom User gestoppt")
+#         GPIO.cleanup()
