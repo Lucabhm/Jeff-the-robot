@@ -28,8 +28,8 @@ OUT3_0 = 17
 
 # IR sensor
 
-OUT4_0 = 26
-OUT4_1 = 6
+OUT4_0 = 20
+OUT4_1 = 13
 
 # ultrasonic sensor
 
