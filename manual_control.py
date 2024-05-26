@@ -3,6 +3,7 @@ import sys
 import directions
 
 def	on_press(key, pin1, pin2, pin3, pin4):
+	print("here")
 	if key == "up":
 		directions.forward(pin1, pin2, pin3, pin4)
 	elif key == "down":
