@@ -1,12 +1,13 @@
 import RPi.GPIO as GPIO
 
 
-sensor = 12
-GPIO.setmode(GPIO.BOARD)
+sensor = 26
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(sensor,GPIO.IN)
+print("start")
 try: 
    while True:
-      if GPIO.input(sensor):
+      if not GPIO.input(sensor):
           print ("Object Detected")
 
 except KeyboardInterrupt:
