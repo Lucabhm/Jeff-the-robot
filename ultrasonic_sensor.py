@@ -1,7 +1,13 @@
 import RPi.GPIO as GPIO
 import time
+import globals as g
+import multiprocessing
 
-def distanz(GPIO_TRIGGER, GPIO_ECHO):
+distanz_test = 0
+
+def distanz(queue, GPIO_TRIGGER, GPIO_ECHO):
+	print("start distanz")
+	while True:
 		# setze Trigger auf HIGH
 		GPIO.output(GPIO_TRIGGER, True)
 		# setze Trigger nach 0.01ms aus LOW
@@ -19,9 +25,9 @@ def distanz(GPIO_TRIGGER, GPIO_ECHO):
 		TimeElapsed = StopZeit - StartZeit
 		# mit der Schallgeschwindigkeit (34300 cm/s) multiplizieren
 		# und durch 2 teilen, da hin und zurueck
-		distanz = (TimeElapsed * 34300) / 2
-		print ("Gemessene Entfernung = %.1f cm" % distanz)
-		return distanz
+		distanz_test = (TimeElapsed * 34300) / 2
+		queue.put(distanz_test)
+		print ("Gemessene Entfernung = %.1f cm" % distanz_test)
 
 # def distanz(GPIO_TRIGGER, GPIO_ECHO):
 #     # setze Trigger auf HIGH
