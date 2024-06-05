@@ -61,13 +61,8 @@ else:
 				print("here")
 				while not GPIO.input(OUT4_0) and not GPIO.input(OUT4_1):
 					print("inside loop")
-					# p2 = multiprocessing.Process(target=us.distanz, args=(queue, OUT5_0, OUT5_1))
-					# p2.start()
-					# distanz_val = queue.get()
-					# p2.join()
-					# print("distanz = %.1f" % distanz_val)
 					distanz_val = us.distanz(OUT5_0, OUT5_1)
-					if (us.distanz_val < 4):
+					if (distanz_val < 4):
 						print("stop")
 						directions.stop([OUT1_1, OUT1_2, OUT2_1, OUT2_2])
 					else:
