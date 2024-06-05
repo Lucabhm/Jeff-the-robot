@@ -37,7 +37,6 @@ PINS = [OUT1_1, OUT1_2, OUT2_1, OUT2_2]
 for pin in PINS:
 	GPIO.setup(pin, GPIO.OUT)
 GPIO.setup(OUT3_0, GPIO.OUT)
-p = GPIO.PWM(OUT3_0, 50)
 GPIO.setup(OUT5_0, GPIO.OUT)
 GPIO.setup(OUT5_1, GPIO.IN)
 GPIO.setup(OUT4_0, GPIO.IN)
@@ -50,6 +49,7 @@ if manual == 'y' or manual == 'Y':
 else:
 	distanz_val = 0
 	i = 7.5
+	p = GPIO.PWM(OUT3_0, 50)
 	p.start(i)
 	queue = multiprocessing.Queue()
 #	p1 = Process(target=sm.set_to_zero)
@@ -61,12 +61,12 @@ else:
 				print("here")
 				while not GPIO.input(OUT4_0) and not GPIO.input(OUT4_1):
 					print("inside loop")
-					p2 = multiprocessing.Process(target=us.distanz, args=(queue, OUT5_0, OUT5_1))
-					p2.start()
-					distanz_val = queue.get()
-					p2.join()
-					print("distanz = %.1f" % distanz_val)
-					if (distanz_val < 4):
+					# p2 = multiprocessing.Process(target=us.distanz, args=(queue, OUT5_0, OUT5_1))
+					# p2.start()
+					# distanz_val = queue.get()
+					# p2.join()
+					# print("distanz = %.1f" % distanz_val)
+					if (us.distanz < 4):
 						print("stop")
 						directions.stop([OUT1_1, OUT1_2, OUT2_1, OUT2_2])
 					else:
@@ -101,8 +101,8 @@ else:
 			# 		p1.join()
 			# 		pr.join()
 	except KeyboardInterrupt:
-		if p2.is_alive():
-			p2.terminate()
+		# if p2.is_alive():
+		# 	p2.terminate()
 		p.stop()
 		directions.stop([OUT1_1, OUT1_2, OUT2_1, OUT2_2])
 		GPIO.cleanup()
