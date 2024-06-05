@@ -38,7 +38,6 @@ for pin in PINS:
 	GPIO.setup(pin, GPIO.OUT)
 GPIO.setup(OUT3_0, GPIO.OUT)
 p = GPIO.PWM(OUT3_0, 50)
-p.start(6.75)
 GPIO.setup(OUT5_0, GPIO.OUT)
 GPIO.setup(OUT5_1, GPIO.IN)
 GPIO.setup(OUT4_0, GPIO.IN)
@@ -50,7 +49,8 @@ if manual == 'y' or manual == 'Y':
 	manual_control.start(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
 else:
 	distanz_val = 0
-	i = 6.5
+	i = 7.5
+	p.start(i)
 	queue = multiprocessing.Queue()
 #	p1 = Process(target=sm.set_to_zero)
 #	pl = Process(target=directions.left, args=(OUT1_1, OUT1_2, OUT2_1, OUT2_2))
@@ -73,6 +73,7 @@ else:
 						print("forward")
 						directions.forward(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
 					time.sleep(0.5)
+				directions.stop([OUT1_1, OUT1_2, OUT2_1, OUT2_2])
 			elif (GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
 				while (i >= 2.5 and GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
 					p.ChangeDutyCycle(i)
