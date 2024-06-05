@@ -52,24 +52,21 @@ else:
 	distanz_val = 0
 	i = 6.5
 	queue = multiprocessing.Queue()
-	p2 = multiprocessing. Process(target=us.distanz, args=(queue, OUT5_0, OUT5_1))
+	p2 = multiprocessing.Process(target=us.distanz, args=(queue, OUT5_0, OUT5_1))
 #	p1 = Process(target=sm.set_to_zero)
 #	pl = Process(target=directions.left, args=(OUT1_1, OUT1_2, OUT2_1, OUT2_2))
 #	pr = Process(target=directions.right, args=(OUT1_1, OUT1_2, OUT2_1, OUT2_2))
 	try:
-		print("forward")
-		directions.forward(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
-		time.sleep(5)
-		print("stop")
-		directions.stop([OUT1_1, OUT1_2, OUT2_1, OUT2_2])
 		while True:
 			if (not GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
 				print("here")
 				while not GPIO.input(OUT4_0) and not GPIO.input(OUT4_1):
 					print("inside loop")
-					p2.start()
+					if not p2.is_alive():
+						p2.start()
 					distanz_val = queue.get()
-					p2.join()
+					if p2.is_alive():
+						p2.join()
 					print("distanz = %.1f" % distanz_val)
 					if (distanz_val < 10):
 						print("stop")
@@ -105,6 +102,8 @@ else:
 			# 		p1.join()
 			# 		pr.join()
 	except KeyboardInterrupt:
+		if p2.is_alive():
+			p2.terminate()
 		p.stop()
 		GPIO.cleanup()
 GPIO.cleanup()
