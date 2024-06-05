@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 import time
-import globals as g
 import multiprocessing
 
 distanz_test = 0
