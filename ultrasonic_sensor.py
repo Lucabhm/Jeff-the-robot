@@ -19,3 +19,4 @@ def distanz(queue, GPIO_TRIGGER, GPIO_ECHO):
 	distanz_test = (TimeElapsed * 34300) / 2
 	queue.put(distanz_test)
 	print ("Gemessene Entfernung = %.1f cm" % distanz_test)
+	return
