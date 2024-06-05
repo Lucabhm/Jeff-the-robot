@@ -66,7 +66,8 @@ else:
 					# distanz_val = queue.get()
 					# p2.join()
 					# print("distanz = %.1f" % distanz_val)
-					if (us.distanz < 4):
+					distanz_val = us.distanz(OUT5_0, OUT5_1)
+					if (us.distanz_val < 4):
 						print("stop")
 						directions.stop([OUT1_1, OUT1_2, OUT2_1, OUT2_2])
 					else:

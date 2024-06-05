@@ -4,7 +4,7 @@ import multiprocessing
 
 distanz_test = 0
 
-def distanz(queue, GPIO_TRIGGER, GPIO_ECHO):
+def distanz(GPIO_TRIGGER, GPIO_ECHO):
 	print("start distanz")
 	GPIO.output(GPIO_TRIGGER, True)
 	time.sleep(0.00001)
@@ -17,6 +17,5 @@ def distanz(queue, GPIO_TRIGGER, GPIO_ECHO):
 			StopZeit = time.time()
 	TimeElapsed = StopZeit - StartZeit
 	distanz_test = (TimeElapsed * 34300) / 2
-	queue.put(distanz_test)
 	print ("Gemessene Entfernung = %.1f cm" % distanz_test)
 	return (distanz_test)
