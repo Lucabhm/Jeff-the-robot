@@ -64,10 +64,6 @@ else:
 		print("stop")
 		directions.stop([OUT1_1, OUT1_2, OUT2_1, OUT2_2])
 		while True:
-#			if (not GPIO.input(OUT4_0)):
-#				print("left")
-#			if (not GPIO.input(OUT4_1)):
-#				print("right")
 			if (not GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
 				print("here")
 				while not GPIO.input(OUT4_0) and not GPIO.input(OUT4_1):
@@ -82,7 +78,6 @@ else:
 						directions.forward(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
 					time.sleep(0.5)
 			elif (GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
-			 	#for i in range(7, 2, -1) or (GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
 				while (i >= 2.5 and GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
 					p.ChangeDutyCycle(i)
 					time.sleep(0.1)
@@ -96,7 +91,6 @@ else:
 			# 		p1.join()
 			# 		pl.join()
 			elif (not GPIO.input(OUT4_0) and GPIO.input(OUT4_1)):
-			 	#for i in range(7, 12, 1) or (not GPIO.input(OUT4_0) and GPIO.input(OUT4_1)):
 				while (i <= 12.5 and not GPIO.input(OUT4_0) and GPIO.input(OUT4_1)):
 					p.ChangeDutyCycle(i)
 					time.sleep(0.1)
