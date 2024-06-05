@@ -9,14 +9,13 @@ def distanz(queue, GPIO_TRIGGER, GPIO_ECHO):
 	GPIO.output(GPIO_TRIGGER, True)
 	time.sleep(0.00001)
 	GPIO.output(GPIO_TRIGGER, False)
-	while True:
-		StartZeit = time.time()
-		StopZeit = time.time()
-		while GPIO.input(GPIO_ECHO) == 0:
-				StartZeit = time.time()
-		while GPIO.input(GPIO_ECHO) == 1:
-				StopZeit = time.time()
-		TimeElapsed = StopZeit - StartZeit
-		distanz_test = (TimeElapsed * 34300) / 2
-		queue.put(distanz_test)
-		print ("Gemessene Entfernung = %.1f cm" % distanz_test)
+	StartZeit = time.time()
+	StopZeit = time.time()
+	while GPIO.input(GPIO_ECHO) == 0:
+			StartZeit = time.time()
+	while GPIO.input(GPIO_ECHO) == 1:
+			StopZeit = time.time()
+	TimeElapsed = StopZeit - StartZeit
+	distanz_test = (TimeElapsed * 34300) / 2
+	queue.put(distanz_test)
+	print ("Gemessene Entfernung = %.1f cm" % distanz_test)
