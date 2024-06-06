@@ -36,7 +36,6 @@ OUT5_1 = 25
 PINS = [OUT1_1, OUT1_2, OUT2_1, OUT2_2]
 for pin in PINS:
 	GPIO.setup(pin, GPIO.OUT)
-GPIO.setup(OUT3_0, GPIO.OUT)
 GPIO.setup(OUT5_0, GPIO.OUT)
 GPIO.setup(OUT5_1, GPIO.IN)
 GPIO.setup(OUT4_0, GPIO.IN)
@@ -47,6 +46,7 @@ manual = input()
 if manual == 'y' or manual == 'Y':
 	manual_control.start(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
 else:
+	GPIO.setup(OUT3_0, GPIO.OUT)
 	distanz_val = 0
 	i = 7.5
 	p = GPIO.PWM(OUT3_0, 50)
@@ -64,6 +64,11 @@ else:
 					distanz_val = us.distanz(OUT5_0, OUT5_1)
 					if (distanz_val < 4):
 						print("stop")
+						# if (i > 7.5):
+							
+						# elif (i < 7.5):
+							
+						# else:
 						directions.stop([OUT1_1, OUT1_2, OUT2_1, OUT2_2])
 					else:
 						print("forward")
@@ -71,23 +76,24 @@ else:
 					time.sleep(0.5)
 				directions.stop([OUT1_1, OUT1_2, OUT2_1, OUT2_2])
 			elif (GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
-				while (i >= 2.5 and GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
-					p.ChangeDutyCycle(i)
-					time.sleep(0.1)
-					i -= 0.5
-			# 	if (us.distanz() < 10):
-			# 		directions.stop(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
+				# while (i >= 2.5 and GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
+				# 	p.ChangeDutyCycle(i)
+				# 	time.sleep(0.1)
+				# 	i -= 0.5
+				# if (us.distanz() < 4):
+				# 	directions.stop(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
 			# 	else:
 			# 		while i < 6.75:
 			# 			p1.start(OUT4_0, OUT4_1, i)
 			# 			pl.start()
 			# 		p1.join()
 			# 		pl.join()
+				directions.left(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
 			elif (not GPIO.input(OUT4_0) and GPIO.input(OUT4_1)):
-				while (i <= 12.5 and not GPIO.input(OUT4_0) and GPIO.input(OUT4_1)):
-					p.ChangeDutyCycle(i)
-					time.sleep(0.1)
-					i += 0.5
+				# while (i <= 12.5 and not GPIO.input(OUT4_0) and GPIO.input(OUT4_1)):
+				# 	p.ChangeDutyCycle(i)
+				# 	time.sleep(0.1)
+				# 	i += 0.5
 			# 	if (us.distanz() < 10):
 			# 		directions.stop(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
 			# 	else:
@@ -96,6 +102,7 @@ else:
 			# 			pr.start()
 			# 		p1.join()
 			# 		pr.join()
+				directions.right(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
 	except KeyboardInterrupt:
 		# if p2.is_alive():
 		# 	p2.terminate()
