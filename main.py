@@ -62,7 +62,7 @@ else:
 				while not GPIO.input(OUT4_0) and not GPIO.input(OUT4_1):
 					print("inside loop")
 					distanz_val = us.distanz(OUT5_0, OUT5_1)
-					if (distanz_val < 4):
+					if (distanz_val <= 10):
 						print("stop")
 						# if (i > 7.5):
 							
