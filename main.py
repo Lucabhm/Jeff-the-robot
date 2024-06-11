@@ -58,9 +58,7 @@ else:
 	try:
 		while True:
 			if (not GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
-				print("here")
 				while not GPIO.input(OUT4_0) and not GPIO.input(OUT4_1):
-					print("inside loop")
 					distanz_val = us.distanz(OUT5_0, OUT5_1)
 					if (distanz_val <= 10):
 						print("stop")
@@ -74,8 +72,10 @@ else:
 						print("forward")
 						directions.forward(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
 					time.sleep(0.5)
-				directions.stop([OUT1_1, OUT1_2, OUT2_1, OUT2_2])
 			elif (GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
+				directions.left(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
+				while (GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
+					print("left")
 				# while (i >= 2.5 and GPIO.input(OUT4_0) and not GPIO.input(OUT4_1)):
 				# 	p.ChangeDutyCycle(i)
 				# 	time.sleep(0.1)
@@ -88,8 +88,10 @@ else:
 			# 			pl.start()
 			# 		p1.join()
 			# 		pl.join()
-				directions.left(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
 			elif (not GPIO.input(OUT4_0) and GPIO.input(OUT4_1)):
+				directions.right(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
+				while (not GPIO.input(OUT4_0) and GPIO.input(OUT4_1)):
+					print("right")
 				# while (i <= 12.5 and not GPIO.input(OUT4_0) and GPIO.input(OUT4_1)):
 				# 	p.ChangeDutyCycle(i)
 				# 	time.sleep(0.1)
@@ -102,7 +104,7 @@ else:
 			# 			pr.start()
 			# 		p1.join()
 			# 		pr.join()
-				directions.right(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
+			directions.stop([OUT1_1, OUT1_2, OUT2_1, OUT2_2])
 	except KeyboardInterrupt:
 		# if p2.is_alive():
 		# 	p2.terminate()
