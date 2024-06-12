@@ -25,7 +25,7 @@ OUT4_0 = 23  # left
 OUT4_1 = 24  # right
 
 # ultrasonic sensor
-OUT5_0 = 18
+OUT5_0 = 17
 OUT5_1 = 25
 
 GPIO.setup(OUT1_1, GPIO.OUT)
