@@ -13,9 +13,11 @@ def distanz(GPIO_TRIGGER, GPIO_ECHO):
 	StopZeit = time.time()
 	while GPIO.input(GPIO_ECHO) == 0:
 			print("null")
+			time.sleep(0.5)
 			StartZeit = time.time()
 	while GPIO.input(GPIO_ECHO) == 1:
 			print("one")
+			time.sleep(0.5)
 			StopZeit = time.time()
 	TimeElapsed = StopZeit - StartZeit
 	distanz_test = (TimeElapsed * 34300) / 2
