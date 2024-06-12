@@ -72,10 +72,12 @@ else:
 				directions.left(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
 				while GPIO.input(OUT4_0) and not GPIO.input(OUT4_1):
 					print("left")
+					time.sleep(0.5)
 			elif not GPIO.input(OUT4_0) and GPIO.input(OUT4_1):
 				directions.right(OUT1_1, OUT1_2, OUT2_1, OUT2_2)
 				while not GPIO.input(OUT4_0) and GPIO.input(OUT4_1):
 					print("right")
+					time.sleep(0.5)
 			directions.stop([OUT1_1, OUT1_2, OUT2_1, OUT2_2])
 	except KeyboardInterrupt:
 		p.stop()
