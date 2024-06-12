@@ -7,7 +7,7 @@ import multiprocessing
 import servo_motor as sm
 
 GPIO.setmode(GPIO.BCM)
-
+GPIO.setwarnings(False)
 # Motors for wheels
 ## Motor 1 = front right, Motor 3 = back right
 OUT1_1 = 6
