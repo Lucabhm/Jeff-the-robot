@@ -28,9 +28,10 @@ OUT4_1 = 24  # right
 OUT5_0 = 18
 OUT5_1 = 25
 
-PINS = [OUT1_1, OUT1_2, OUT2_1, OUT2_2]
-for pin in PINS:
-	GPIO.setup(pin, GPIO.OUT)
+GPIO.setup(OUT1_1, GPIO.OUT)
+GPIO.setup(OUT1_2, GPIO.OUT)
+GPIO.setup(OUT2_1, GPIO.OUT)
+GPIO.setup(OUT2_2, GPIO.OUT)
 GPIO.setup(OUT5_0, GPIO.OUT)
 GPIO.setup(OUT5_1, GPIO.IN)
 GPIO.setup(OUT4_0, GPIO.IN)
